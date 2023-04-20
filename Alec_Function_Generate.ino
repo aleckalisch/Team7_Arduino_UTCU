@@ -16,17 +16,17 @@ int8_t * generateData()
     if(function_Type_name == "AZ")
     {
         int8_t AZ_function = 0b0011001; //all function ID's are 7 bits
-        data[0] = AZ_function; //stored in the first slot
+        function_ID = AZ_function; //stored in the first slot
     }
     else if(function_Type_name == "BAZ")
     {
         int8_t BAZ_function = 0b1001001; //all function ID's are 7 bits
-        data[0] = BAZ_function; //stored in the first slot
+        function_ID = BAZ_function; //stored in the first slot
     }
     else if(function_Type_name == "EL")
     {
         int8_t EL_function = 0b1100001; //all function ID's are 7 bits
-        data[0] = EL_function; //stored in the first slot
+        function_ID = EL_function; //stored in the first slot
     }
     return data;
 }
