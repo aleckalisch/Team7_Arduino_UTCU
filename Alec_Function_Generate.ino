@@ -5,14 +5,12 @@
 // Assumption 3: there is a global variable for the barker code that is preset and cannot be modified
 //function IDs were found in Annex 10 page 46
 #include <stdlib.h>
-int8_t function_Type_bin;
 char function_Type_name[] = "AZ"; //can also be EL, and BAZ
 int8_t barker_code = 0b11101;
 int8_t function_ID = 0b0000000;
 
-int8_t * generateData()
+void generateData()
 {
-    int8_t data[10];
     if(function_Type_name == "AZ")
     {
         int8_t AZ_function = 0b0011001; //all function ID's are 7 bits
@@ -28,5 +26,4 @@ int8_t * generateData()
         int8_t EL_function = 0b1100001; //all function ID's are 7 bits
         function_ID = EL_function; //stored in the first slot
     }
-    return data;
 }
