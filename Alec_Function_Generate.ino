@@ -8,6 +8,8 @@
 char function_Type_name[] = "AZ"; //can also be EL, and BAZ
 int8_t barker_code = 0b11101;
 int8_t function_ID = 0b0000000;
+int data_word = 0;
+int8_t raw_data[8];
 
 void generateData()
 {
@@ -26,4 +28,16 @@ void generateData()
         int8_t EL_function = 0b1100001; //all function ID's are 7 bits
         function_ID = EL_function; //stored in the first slot
     }
+    if(data_word)
+    {
+        for(int i =0;i<3;i++){
+            raw_data[i] = rand()%256;
+        }
+    }
+    else{
+        for(int i =0;i<8;i++){
+            raw_data[i] = rand()%256;
+        }
+    }
+
 }
