@@ -7,8 +7,8 @@
 
 void format_func(int8_t ad,int8_t bd);
 
-int8_t basic_Data[4];//basic data. holds 32 bits total
-int8_t Aux_data[8];//Aux data. Hold 72 bits total
+bool basic_Data[64];//basic data. holds 32 bits total
+bool Aux_data[72];//Aux data. Hold 72 bits total
 
 int data_word =0;
 
@@ -21,28 +21,28 @@ void format_func(int8_t ad,int8_t bd)
 {
     if(data_word == 0)//if data_word equals 0 then the data gets placed into the aux data array
     {
-        for(int i =0; i < 8; i++)
+        for(int i =0; i < 9; i++)
         {
-            if(!Aux_data[i])
-            {
-                Aux_data[i]=ad;   
-            }
-           else 
-           return;
+           if(ad ==0)
+           {
+            Aux_data[i] = false;
+           }
+           else if(ad==1)
+           {
+            Aux_data[i] = true;
+           }
         }
     }
     else if(data_word ==1)//if data_word equals 1 then the data gets placed into the basic data array
     {
-        for(int i =0; i < 4; i++)
+        if(bd == 0)
         {
-            if(!basic_data[i])
-            {
-                basic_data[i]=bd;    
-            }
-           else 
-           return;
+            basic_Data[i] = false;
         }
-       basic_data[i]=bd; 
+        else if(bd == 1)
+        {
+            basic_Data[i] = true;
+        }
     }
     else 
     return ;
