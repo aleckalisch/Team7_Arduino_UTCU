@@ -58,7 +58,7 @@ void sendData(){ // function made to check for elasped time to determine if ante
               antennaType[i] = stateWait[i]; // antennaType set to pause scanning
             }
             else if (stateType == allStates[4] && currentMicros - startMicros >= bitReadTime){
-              antennaType[i] = statefro[i]; // antennaType set to "Fro" scan
+              antennaType[i] = stateFro[i]; // antennaType set to "Fro" scan
             }
         }
     }
