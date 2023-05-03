@@ -11,7 +11,7 @@ short stateReset[totalBits] = {1, 0, 1, 0, 0, 0, 0}; // declaration of Reset sta
 short stateNoData[totalBits] = {0, 0, 0, 0, 1, 0, 0}; // declaration of NoData state; last 2 bits are don't care 
 short stateTakeData[totalBits] = {0, 0, 0, 1, 1, 0, 0}; // declaration of TakeData state; last 2 bits are don't care
 short stateTo[totalBits] = {1, 0, 0, 0, 1, 0, 0}; // declaration of To state; 4th and last 2 bits are don't caare
-short stateWait[totalBit] = {1, 0, 0, 0, 0, 0, 0}; // declaration of Wait state; 4th and last 2 bits are don't care
+short stateWait[totalBits] = {1, 0, 0, 0, 0, 0, 0}; // declaration of Wait state; 4th and last 2 bits are don't care
 short stateFro[totalBits] = {1, 0, 0, 0, 1, 0, 0}; // declaration of Fro state; 4th and last 2 bits are don't care
 unsigned long startMicros;  //starting value of time in microseconds
 unsigned long currentMicros; // current value of elasped time in microseconds
