@@ -21,7 +21,7 @@ void format_func(int8_t ad,int8_t bd)
 {
     if(data_word == 0)//if data_word equals 0 then the data gets placed into the aux data array
     {
-        for(int i =0; i < 9; i++)
+        for(int i =0; i < 72; i++)
         {
            if(ad ==0)
            {
@@ -35,6 +35,8 @@ void format_func(int8_t ad,int8_t bd)
     }
     else if(data_word ==1)//if data_word equals 1 then the data gets placed into the basic data array
     {
+        for(int i =0; i<64;i++)
+        {
         if(bd == 0)
         {
             basic_Data[i] = false;
@@ -43,6 +45,8 @@ void format_func(int8_t ad,int8_t bd)
         {
             basic_Data[i] = true;
         }
+        }
+        
     }
     else 
     return ;
