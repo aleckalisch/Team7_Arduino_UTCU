@@ -5,7 +5,7 @@
 //first twelve is ignore
 #include <stdlib.h>
 
-void format_func(int8_t ad,int8_t bd);
+void format_func(int ad,int bd);
 
 bool basic_Data[64];//basic data. holds 32 bits total
 bool Aux_data[72];//Aux data. Hold 72 bits total
@@ -17,7 +17,7 @@ int data_word =0;
 //4. 100x00 wait
 //5.100x11 fro
 
-void format_func(int8_t ad,int8_t bd)
+void format_func(int ad,int bd)
 {
     if(data_word == 0)//if data_word equals 0 then the data gets placed into the aux data array
     {
