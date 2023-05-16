@@ -3,54 +3,73 @@
 //Aux data is 64 bits total
 //baisc data is 32 total
 //first twelve is ignore
+// Includes files
 #include <stdlib.h>
+#include <cstdint>
+#include <string>
+#include <ostream>
+#include <iostream>
+using namespace std;
 
-void format_func(int ad,int bd);
+void format_func();
 
-bool basic_Data[64];//basic data. holds 32 bits total
-bool Aux_data[72];//Aux data. Hold 72 bits total
-
+const int totalBits_ID = 6;
 int data_word =0;
+int data_bit =0;
+const int maxData = 32;  // aux data. Hold 32 bits total
+const int maxAux = 72;   // basic data. holds 72 bits total
+const int maxRaw = 60;
 
-//Aux_data[1] = 
-//3. 100x10 to
-//4. 100x00 wait
-//5.100x11 fro
+bool basic_data[maxData] = { 0 };  // basic data. holds 32 bits total
+bool aux_data[maxAux] = { 0 };     // aux data. Hold 72 bits total
 
-void format_func(int ad,int bd)
-{
-    if(data_word == 0)//if data_word equals 0 then the data gets placed into the aux data array
-    {
-        for(int i =0; i < 72; i++)
-        {
-           if(ad ==0)
-           {
-            Aux_data[i] = false;
-           }
-           else if(ad==1)
-           {
-            Aux_data[i] = true;
-           }
+
+
+short antennaType[totalBits_ID] = { 0 };  // global antenna type
+int raw_data[] = {0,0,0,0,0,0,0,0,0,0,0,0,0};
+const int bdw1[] = {1,0,1,1,1,1,0,0,1,1,1,0,0,1,0,1,1,1,1,1};
+const int bdw2[] = {1,0,0,0,0,1,1,0,0,1,0,0,1,0,1,0,0,1,0,0};
+const int bdw3[] = {1,1,1,0,0,1,0,1,1,0,1,0,1,1,0,1,1,0,0,0};
+const int bdw4[] = {1,1,1,1,0,0,1,0,1,1,1,0,0,1,0,1,0,1,0,1};
+const int bdw5[] = {0,1,1,1,0,0,1,1,0,1,1,0,1,0,0,1,1,0,1,0};
+const int bdw6[] = {1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,1,1,0};
+const int ad1[] = {0,0,0,0,1,1,1,1,1,0,0,1,1,0,1,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,1,0,1,1,0,0,0,1,1,0,0,1,1,1,1,0,0,0,0,0,0};
+void format_func() {
+    // Set the databit to the "data bit" which is atenna type's 2 bool element
+    bool dataBit = antennaType[1];
+
+    // if data_word equals 1 then the data gets placed into the basic data array
+    if (dataBit) {
+
+        for (int i = 0; i < 20; i++) {
+            raw_data[i] = basic_data[i];
+        }
+
+        for (int i = 20; i < maxData; i++) {
+            basic_data[i] = bdw1[i];
         }
     }
-    else if(data_word ==1)//if data_word equals 1 then the data gets placed into the basic data array
-    {
-        for(int i =0; i<64;i++)
-        {
-        if(bd == 0)
-        {
-            basic_Data[i] = false;
+
+    // if data_word equals 0 then the data gets placed into the aux data array
+    else {
+
+        for (int i = 0; i < maxRaw; i++) {
+            raw_data[i] = aux_data[i];
         }
-        else if(bd == 1)
-        {
-            basic_Data[i] = true;
+
+        for (int i = maxRaw; i < maxAux; i++) {
+            aux_data[i] = ad1[i];
         }
-        }
-        
     }
-    else 
-    return ;
 }
 
-
-
+int main()
+{
+    format_func();
+    
+    for(int i = 0; i < maxAux; i++)
+    {
+     cout << aux_data[i] << endl;   
+    }
+    return 0;
+}
